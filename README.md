@@ -46,45 +46,6 @@ Este projeto consiste em um script Python para medir a temperatura usando o sens
 3. _Envio dos Dados para o Recurso:_
    - Faça uma solicitação POST para o recurso desejado com os dados atualizados.
 
-## Exemplo de Uso
-
-python
-
-# Exemplo de uso para atualizar o dicionário capability_data_json
-
-# (Adicione este trecho ao seu código)
-
-import csv
-import requests
-
-# Ler o arquivo CSV
-
-csv_file = 'temperatures.csv'
-capability_data_json = {"data": []}
-
-with open(csv_file, mode='r') as file:
-csv_reader = csv.DictReader(file)
-for row in csv_reader:
-if 'temperatura' in row:
-temperatura = float(row['temperatura'])
-timestamp = row['timestamp']
-capability_data_json['data'].append({
-"temperatura": temperatura,
-"timestamp": timestamp
-})
-
-# Fazer a solicitação POST para o recurso
-
-url = f"{api}/adaptor/resources/{uuid}/data/environment_monitoring"
-r = requests.post(url, json=capability_data_json)
-
-if r.status_code == 201:
-print('Ok')
-else:
-print(f'Status code: {r.status_code}')
-
-Lembre-se de ajustar as variáveis conforme o seu ambiente específico.
-
 ## Licença
 
 Este projeto está sob a licença MIT. Consulte o arquivo LICENSE para obter mais detalhes.
